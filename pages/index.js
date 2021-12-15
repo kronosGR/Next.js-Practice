@@ -17,8 +17,19 @@ const DUMMY_MEETUPS = [
   }
 ];
 
-function HomePage() {
-  return <MeetupList meetups={DUMMY_MEETUPS}/>;
+function HomePage(props) {
+  return <MeetupList meetups={props.meetups}/>;
+}
+
+// only for pages not simple components
+// next.js waits until the data load to render the page
+// you always needs to return a project as props
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    }
+  };
 }
 
 export default HomePage;
